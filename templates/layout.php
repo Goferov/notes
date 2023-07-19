@@ -1,28 +1,35 @@
-<!DOCTYPE html>
 <html lang="pl">
+
 <head>
-    <meta charset="utf-8">
-    <title>My Notes</title>
+  <title>Notatnik</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+  <link href="/public/style.css" rel="stylesheet">
 </head>
 
-<body>
-<head>
-    <nav>
+<body class="body">
+  <div class="wrapper">
+    <div class="header">
+      <h1><i class="far fa-clipboard"></i>Moje notatki</h1>
+    </div>
+
+    <div class="container">
+      <div class="menu">
         <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/?action=create">Dodaj notatkę</a></li>
+          <li><a href="/">Strona główna</a></li>
+          <li><a href="/?action=create">Nowa notatka</a></li>
         </ul>
-    </nav>
-</head>
-<main>
-    <?php
-    require_once('templates/pages/'.$page.'.php');
-    ?>
+      </div>
 
-</main>
-<footer>
+      <div class="page">
+        <?php require_once("templates/pages/$page.php"); ?>
+      </div>
+    </div>
 
-</footer>
+    <div class="footer">
+      <p>Notatki - projekt w kursie PHP</p>
+    </div>
+  </div>
 </body>
 
 </html>
