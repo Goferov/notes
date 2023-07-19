@@ -22,7 +22,7 @@
       </div>
 
       <div class="page">
-        <?php require_once("templates/pages/$page.php"); ?>
+        <?php require_once "templates/pages/$page.php"; ?>
       </div>
     </div>
 
