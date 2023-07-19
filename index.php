@@ -4,9 +4,13 @@ declare(strict_types=1);
 namespace App;
 
 require_once("src/utils/debug.php");
+require_once("src/View.php");
 
-$action = htmlentities($_GET['action'] ?? '');
+const DEFAULT_ACTION = 'list';
+
+$action = $_GET['action'] ?? DEFAULT_ACTION;
+
+$view = new View();
+$view->render($action);
 
 
-
-include_once('templates/pages/list.php');
