@@ -58,9 +58,15 @@ class Controller
                 ];
                 break;
             default:
-                $data = $this->getRequestGet();
-                $viewParams['msg'] = $data['msg'] ?? null;
                 $page = 'list';
+
+                $data = $this->getRequestGet();
+
+                $viewParams = [
+                    'msg' => $data['msg'] ?? null,
+                    'notes' => $this->db->getNotes(),
+                ];
+
                 break;
         }
 

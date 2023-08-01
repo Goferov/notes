@@ -1,16 +1,41 @@
-<div>
-    <div class="message">
-        <?php
-            if(!empty($params['msg'])) {
+<div class="list">
+    <section>
+        <div class="message">
+            <?php
+            if (!empty($params['msg'])) {
                 switch ($params['msg']) {
                     case 'created':
-                        echo 'Notatka została utworzona';
+                        echo 'Notatka zostało utworzona';
                         break;
                 }
             }
-        ?>
-    </div>
-    <h2>Lista notatek</h2>
-
+            ?>
+        </div>
+        <div class="tbl-header">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Tytuł</th>
+                    <th>Data</th>
+                    <th>Opcje</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="tbl-content">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <tbody>
+                    <?php foreach ($params['notes'] as $note): ?>
+                        <tr>
+                            <td><?= $note['id'] ?></td>
+                            <td><?= $note['title'] ?></td>
+                            <td><?= $note['created'] ?></td>
+                            <td>Opt</td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </section>
 </div>
-
