@@ -43,8 +43,8 @@
                     <?php foreach ($params['notes'] as $note): ?>
                         <tr>
                             <td><?= $note['id'] ?></td>
-                            <td><?= htmlentities($note['title']) ?></td>
-                            <td><?= htmlentities($note['created']) ?></td>
+                            <td><?= $note['title'] ?></td>
+                            <td><?= $note['created'] ?></td>
                             <td>
                                 <a href="/?action=show&id=<?= $note['id'] ?>"><button>Show</button></a>
                             </td>
