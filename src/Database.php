@@ -40,6 +40,7 @@ class Database
             $this->conn->exec($query);
         }
         catch(Throwable $e) {
+            dump($e);
             throw new StorageException('Error creating note',400, $e);
         }
     }

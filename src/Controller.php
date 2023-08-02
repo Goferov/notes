@@ -15,16 +15,14 @@ class Controller
 {
     private const DEFAULT_ACTION = 'list';
     private static array $configuration = [];
-    private array $request;
+    private Request $request;
     private View $view;
     private Database $db;
 
-    public static function initConfiguration(array $configuration): void
-    {
+    public static function initConfiguration(array $configuration): void {
         self::$configuration = $configuration;
     }
-    public function __construct(array $request)
-    {
+    public function __construct(Request $request) {
         if(empty(self::$configuration['db'])) {
             throw new ConfiguartionException('Database configuration error');
         }
@@ -34,28 +32,27 @@ class Controller
     }
 
 
-    public function run(): void
-    {
+    public function run(): void {
 
         $viewParams = [];
         switch ($this->action()) {
             case 'create':
                 $page = 'create';
 
-                $data = $this->getRequestPost();
-                if($data) {
+                if($this->request->hasPost()) {
                     $this->db->createNote([
-                        'title'=>$data['title'],
-                        'description'=>$data['description'],
+                        'title' => $this->request->postParam('title'),
+                        'description' => $this->request->postParam('description'),
                     ]);
                     header('Location: /?msg=created');
                     exit();
                 }
+
                 break;
             case 'show':
                 $page = 'show';
-                $data = $this->getRequestGet();
-                $noteId = (int)$data['id'] ?? null;
+                $noteId = (int) $this->request->getParam('id');
+
                 if(!$noteId) {
                     header('Location: /?error=missingNoteId');
                     exit();
@@ -77,11 +74,9 @@ class Controller
             default:
                 $page = 'list';
 
-                $data = $this->getRequestGet();
-
                 $viewParams = [
-                    'msg' => $data['msg'] ?? null,
-                    'error' => $data['error'] ?? null,
+                    'msg' => $this->request->getParam('msg'),
+                    'error' => $this->request->getParam('error'),
                     'notes' => $this->db->getNotes(),
                 ];
                 break;
@@ -90,16 +85,6 @@ class Controller
         $this->view->render($page, $viewParams);
     }
     private function action(): string {
-        $data = $this->getRequestGet();
-        return $data['action'] ?? self::DEFAULT_ACTION;
-    }
-    private function getRequestPost(): array
-    {
-        return $this->request['post'] ?? [];
-    }
-
-    private function getRequestGet(): array
-    {
-        return $this->request['get'] ?? [];
+        return $this->request->getParam('action', self::DEFAULT_ACTION);
     }
 }
