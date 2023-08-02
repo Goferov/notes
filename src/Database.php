@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace App;
 
 require_once "exception/StorageException.php";
+require_once "exception/NotFoundException.php";
 
 use App\Exception\ConfiguartionException;
+use App\Exception\NotFoundException;
 use App\Exception\StorageException;
 use PDO;
 use PDOException;
@@ -51,6 +53,23 @@ class Database
         catch (Throwable $e) {
             throw new StorageException('Error while downloading notes',400, $e);
         }
+    }
+
+    public function getNote(int $id) : array {
+        try {
+            $query = "SELECT * FROM notes WHERE id = $id";
+            $result = $this->conn->query($query);
+            $note = $result->fetch(PDO::FETCH_ASSOC);
+        }
+        catch (Throwable $e) {
+            throw new StorageException('Error while getting note ', 400, $e);
+        }
+
+        if(!$note) {
+            throw new NotFoundException('Note not found');
+        }
+
+        return $note;
     }
 
     private function createConnection(array $config): void {
