@@ -7,6 +7,7 @@
             <li>Opis: <?= $note['description'] ?></li>
             <li>Utworzono: <?= $note['created'] ?></li>
         </ul>
+        <a href="/?action=edit&id=<?= $note['id'] ?>"><button>Edit</button></a>
     <?php endif; ?>
     <a href="/"><button>Powrót do listy notatek</button></a>
 </div>
