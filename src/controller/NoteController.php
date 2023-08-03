@@ -47,19 +47,5 @@ class NoteController extends AbstractController
         $this->view->render('edit');
     }
 
-    private function redirect(string $to, array $params):void {
 
-        $location = $to;
-
-        if($params) {
-            $queryParams = [];
-            foreach ($params as $key=>$param) {
-                $queryParams[] = urlencode($key) . '=' . urlencode($param);
-            }
-            $queryParams = implode('&',$queryParams);
-            $location .= '?' . $queryParams;
-        }
-        header('Location: '.$location);
-        exit();
-    }
 }
