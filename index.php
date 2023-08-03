@@ -1,27 +1,24 @@
 <?php
 declare(strict_types=1);
 
-namespace App;
-use App\Exception\AppException;
-use App\Exception\ConfiguartionException;
-use Throwable;
+spl_autoload_register(function(string  $classNamespace) {
+    $classNamespace = str_replace(['\\','App/'],['/',''],$classNamespace);
+    $path = 'src/' . $classNamespace . '.php';
+    require_once $path;
+});
 
-$configuration = require_once "config/config.php";
 require_once "src/utils/debug.php";
-require_once "src/NoteController.php";
-require_once "src/Request.php";
-require_once "src/exception/AppException.php";
+$configuration = require_once "config/config.php";
 
-
-$request = [
-    'get'=>$_GET,
-    'post'=>$_POST
-];
+use App\Request;
+use App\controller\NoteController;
+use App\exception\AppException;
+use App\exception\ConfiguartionException;
 
 $request = new Request($_GET, $_POST);
 
-try {
 
+try {
     NoteController::initConfiguration($configuration);
     (new NoteController($request))->run();
 }

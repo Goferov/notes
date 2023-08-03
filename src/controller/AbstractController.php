@@ -2,13 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App;
 
-require_once "src/View.php";
-require_once "src/Database.php";
-require_once "src/exception/ConfiguartionException.php";
 
+namespace App\Controller;
+
+
+use App\Database;
 use App\Exception\ConfiguartionException;
+use App\Request;
+use App\View;
 
 abstract class AbstractController
 {
