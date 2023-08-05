@@ -41,9 +41,13 @@ class NoteController extends AbstractController
 
     public function deleteAction(): void {
 
-        $note = $this->getNote();
-        dump($note);
-        die("delete");
+        if($this->request->isPost()) {
+            $noteId = (int) $this->request->postParam('id');
+            $this->db->deleteNote($noteId);
+            $this->redirect('/',['msg'=>'deleted']);
+        }
+
+        $this->view->render('delete',['note' => $this->getNote()]);
     }
 
     private function getNote(): array {

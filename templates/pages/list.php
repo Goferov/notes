@@ -22,7 +22,10 @@
                         echo 'Notatka zostało utworzona';
                         break;
                     case 'edited':
-                        echo 'Notatka zostało zedytowana';
+                        echo 'Notatka zostało zaktualizowana';
+                        break;
+                    case 'deleted':
+                        echo 'Notatka zostało usunięta';
                         break;
                 }
             }
@@ -50,7 +53,7 @@
                             <td><?= $note['created'] ?></td>
                             <td>
                                 <a href="/?action=show&id=<?= $note['id'] ?>"><button>Show</button></a>
-                                <a href="/?action=Delete&id=<?= $note['id'] ?>"><button>Delete</button></a>
+                                <a href="/?action=delete&id=<?= $note['id'] ?>"><button>Delete</button></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

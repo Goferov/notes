@@ -82,6 +82,16 @@ class Database
         }
     }
 
+    public function deleteNote(int $id): void {
+        try {
+            $query = "DELETE FROM notes WHERE id = $id";
+            $this->conn->exec($query);
+        }
+        catch (Throwable $e) {
+            throw new StorageException('Note delete error', 404, $e);
+        }
+    }
+
     private function createConnection(array $config): void {
         $dsn = 'mysql:dbname='.$config['database'].';host='.$config['host'];
         $this->conn = new PDO($dsn, $config['user'], $config['password'], [ PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ]);
