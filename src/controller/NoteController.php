@@ -7,7 +7,7 @@ use App\Exception\NotFoundException;
 
 class NoteController extends AbstractController
 {
-    public function createAction() {
+    public function createAction(): void {
         if($this->request->hasPost()) {
             $this->db->createNote([
                 'title' => $this->request->postParam('title'),
@@ -18,27 +18,15 @@ class NoteController extends AbstractController
         $this->view->render('create');
     }
 
-    public function showAction() {
-        $noteId = (int) $this->request->getParam('id');
-        if(!$noteId) {
-            $this->redirect('/',['error'=>'missingNoteId']);
-        }
-
-        try {
-            $note = $this->db->getNote($noteId);
-        }
-        catch (NotFoundException $e) {
-            $this->redirect('/',['error'=>'noteNotFound']);
-        }
-
-        $this->view->render('show', ['note' => $note,]);
+    public function showAction(): void {
+        $this->view->render('show', ['note' => $this->getNote()]);
     }
 
-    public function listAction() {
+    public function listAction(): void {
         $this->view->render('list', ['msg' => $this->request->getParam('msg'), 'error' => $this->request->getParam('error'), 'notes' => $this->db->getNotes()]);
     }
 
-    public function editAction() {
+    public function editAction(): void {
 
         if($this->request->isPost()) {
             $noteId = (int)$this->request->postParam('id');
@@ -48,7 +36,17 @@ class NoteController extends AbstractController
             ]);
             $this->redirect('/',['msg' => 'edited']);
         }
+        $this->view->render('edit',['note' => $this->getNote()]);
+    }
 
+    public function deleteAction(): void {
+
+        $note = $this->getNote();
+        dump($note);
+        die("delete");
+    }
+
+    private function getNote(): array {
         $noteId = (int)$this->request->getParam('id');
         if(!$noteId) {
             $this->redirect('/',['error'=>'missingNoteId']);
@@ -60,9 +58,7 @@ class NoteController extends AbstractController
         catch (NotFoundException $e) {
             $this->redirect('/',['error'=>'noteNotFound']);
         }
-
-        $this->view->render('edit',['note' => $note,]);
+        return $note;
     }
-
 
 }

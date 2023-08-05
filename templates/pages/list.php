@@ -50,6 +50,7 @@
                             <td><?= $note['created'] ?></td>
                             <td>
                                 <a href="/?action=show&id=<?= $note['id'] ?>"><button>Show</button></a>
+                                <a href="/?action=Delete&id=<?= $note['id'] ?>"><button>Delete</button></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
