@@ -39,12 +39,29 @@ class NoteController extends AbstractController
     }
 
     public function editAction() {
+
+        if($this->request->isPost()) {
+            $noteId = (int)$this->request->postParam('id');
+            $this->db->editNote($noteId,[
+                'title' => $this->request->postParam('title'),
+                'description' => $this->request->postParam('description'),
+            ]);
+            $this->redirect('/',['msg' => 'edited']);
+        }
+
         $noteId = (int)$this->request->getParam('id');
         if(!$noteId) {
             $this->redirect('/',['error'=>'missingNoteId']);
         }
 
-        $this->view->render('edit');
+        try {
+            $note = $this->db->getNote($noteId);
+        }
+        catch (NotFoundException $e) {
+            $this->redirect('/',['error'=>'noteNotFound']);
+        }
+
+        $this->view->render('edit',['note' => $note,]);
     }
 
 

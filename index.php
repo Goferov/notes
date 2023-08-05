@@ -15,7 +15,7 @@ use App\controller\NoteController;
 use App\exception\AppException;
 use App\exception\ConfiguartionException;
 
-$request = new Request($_GET, $_POST);
+$request = new Request($_GET, $_POST, $_SERVER);
 
 
 try {
