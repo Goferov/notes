@@ -42,9 +42,18 @@ class Database
         }
     }
 
-    public function getNotes() : array {
+    public function getNotes(string $sortBy, string $sortOrder) : array {
         try {
-            $query = "SELECT id, title, created FROM notes";
+
+            if(!in_array($sortBy, ['created','title'])) {
+                $sortBy = 'title';
+            }
+
+            if(!in_array($sortOrder, ['asc','desc'])) {
+                $sortOrder = 'asc';
+            }
+
+            $query = "SELECT id, title, created FROM notes ORDER BY $sortBy $sortOrder";
             $result = $this->conn->query($query);
             return $result->fetchAll(PDO::FETCH_ASSOC);
         }
