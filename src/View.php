@@ -7,7 +7,6 @@
     {
         private function escape(array $params): array {
             $clear_params = [];
-
             foreach ($params as $key=>$param) {
                 if(is_array($param)) {
                     $clear_params[$key] = $this->escape($param);

@@ -42,9 +42,9 @@ class Database
         }
     }
 
-    public function getNotes(string $sortBy, string $sortOrder) : array {
+    public function getNotes(int $pageNumber, int $pageSize, string $sortBy, string $sortOrder) : array {
         try {
-
+            $offset = ($pageNumber - 1) * $pageSize;
             if(!in_array($sortBy, ['created','title'])) {
                 $sortBy = 'title';
             }
@@ -53,7 +53,7 @@ class Database
                 $sortOrder = 'asc';
             }
 
-            $query = "SELECT id, title, created FROM notes ORDER BY $sortBy $sortOrder";
+            $query = "SELECT id, title, created FROM notes ORDER BY $sortBy $sortOrder LIMIT $offset, $pageSize";
             $result = $this->conn->query($query);
             return $result->fetchAll(PDO::FETCH_ASSOC);
         }
@@ -61,6 +61,20 @@ class Database
             throw new StorageException('Error while downloading notes',400, $e);
         }
     }
+
+
+    public function getCount(): int {
+        try {
+            $query = "SELECT COUNT(*) AS noteCount FROM notes";
+            $result = $this->conn->query($query);
+            $result = $result->fetch(PDO::FETCH_ASSOC);
+            return $result['noteCount'];
+        }
+        catch (Throwable $e) {
+            throw new StorageException('Number of notes error',400, $e);
+        }
+    }
+
 
     public function getNote(int $id) : array {
         try {
