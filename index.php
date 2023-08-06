@@ -27,6 +27,7 @@ catch(ConfiguartionException $e) {
     echo '<h3>'.$e->getMessage().'</h3>';
 }
 catch(Throwable $e) {
+    dump($e);
     echo '<h3>App error</h3>';
 }
 

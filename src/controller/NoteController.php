@@ -8,7 +8,7 @@ class NoteController extends AbstractController
     private const PAGE_SIZE = 10;
     public function createAction(): void {
         if($this->request->hasPost()) {
-            $this->db->createNote([
+            $this->noteModel->create([
                 'title' => $this->request->postParam('title'),
                 'description' => $this->request->postParam('description'),
             ]);
@@ -37,12 +37,12 @@ class NoteController extends AbstractController
         }
 
         if($phrase) {
-            $notes = $this->db->searchNotes($phrase,$pageNumber, $pageSize, $sortBy, $sortOrder);
-            $notesCount = $this->db->getSearchCount($phrase);
+            $notes = $this->noteModel->search($phrase,$pageNumber, $pageSize, $sortBy, $sortOrder);
+            $notesCount = $this->noteModel->searchCount($phrase);
         }
         else {
-            $notes = $this->db->getNotes($pageNumber, $pageSize, $sortBy, $sortOrder);
-            $notesCount = $this->db->getCount();
+            $notes = $this->noteModel->list($pageNumber, $pageSize, $sortBy, $sortOrder);
+            $notesCount = $this->noteModel->count();
         }
 
 
@@ -63,7 +63,7 @@ class NoteController extends AbstractController
 
         if($this->request->isPost()) {
             $noteId = (int)$this->request->postParam('id');
-            $this->db->editNote($noteId,[
+            $this->noteModel->edit($noteId,[
                 'title' => $this->request->postParam('title'),
                 'description' => $this->request->postParam('description'),
             ]);
@@ -76,7 +76,7 @@ class NoteController extends AbstractController
 
         if($this->request->isPost()) {
             $noteId = (int) $this->request->postParam('id');
-            $this->db->deleteNote($noteId);
+            $this->noteModel->delete($noteId);
             $this->redirect('/',['msg'=>'deleted']);
         }
 
@@ -88,7 +88,7 @@ class NoteController extends AbstractController
         if(!$noteId) {
             $this->redirect('/',['error'=>'missingNoteId']);
         }
-        return $this->db->getNote($noteId);
+        return $this->noteModel->get($noteId);
     }
 
 }
