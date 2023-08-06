@@ -40,12 +40,16 @@
         $size = $page['size'] ?? 10;
         $currentPage = $page['number'] ?? 1;
         $pages = $page['pages'] ?? 1;
+        $phrase = $params['phrase'] ?? null;
 
-        $paginationUrl = '&pagesize='.$size.'&sortby='.$by.'&sortorder='.$order;
+        $paginationUrl = '&phrase='.$phrase.'&pagesize='.$size.'&sortby='.$by.'&sortorder='.$order;
         ?>
 
         <div>
             <form class="settings-form" action="/" method="GET">
+                <div>
+                    <label>Wyszukaj: <input type="text" name="phrase" value="<?= $phrase ?>"/></label>
+                </div>
                 <div>
                     <div>Sortuj po:</div>
                     <label>Tytule: <input name="sortby" type="radio" value="title" <?= $by === 'title' ? 'checked' : '' ?>/></label>
