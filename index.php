@@ -23,13 +23,10 @@ try {
     (new NoteController($request))->run();
 }
 catch(ConfiguartionException $e) {
-    echo '<h3>'.$e->getMessage().'</h3>';
-}
-catch(AppException $e) {
+    echo '<h1>App error</h1>';
     echo '<h3>'.$e->getMessage().'</h3>';
 }
 catch(Throwable $e) {
-    dump($e);
     echo '<h3>App error</h3>';
 }
 
