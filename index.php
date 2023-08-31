@@ -12,11 +12,9 @@ $configuration = require_once "config/config.php";
 
 use App\Request;
 use App\controller\NoteController;
-use App\exception\AppException;
 use App\exception\ConfiguartionException;
 
 $request = new Request($_GET, $_POST, $_SERVER);
-
 
 try {
     NoteController::initConfiguration($configuration);
@@ -28,6 +26,7 @@ catch(ConfiguartionException $e) {
 }
 catch(Throwable $e) {
     echo '<h3>App error</h3>';
+    echo '<h3>'.$e->getMessage().'</h3>';
 }
 
 
