@@ -40,10 +40,10 @@ abstract class AbstractController
             if(!method_exists($this, $action)) {
                 $action = self::DEFAULT_ACTION . 'Action';
             }
-            throw new StorageException('tdstgsetse');
             $this->$action();
         }
         catch (StorageException $e) {
+            dump($e->getMessage());
             $this->view->render('404',['msg'=>$e->getMessage()]);
         }
         catch (NotFoundException $e) {
