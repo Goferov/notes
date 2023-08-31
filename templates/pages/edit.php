@@ -1,15 +1,15 @@
-<h2>Edytuj notatke</h2>
+<h2>Edit note</h2>
 <div>
     <?php $note = $params['note']; ?>
     <?php if($note): ?>
         <form class="note-form" action="/?action=edit" method="post">
             <ul>
                 <li>
-                    <label>Tytuł <span class="required">*</span></label>
+                    <label>Title <span class="required">*</span></label>
                     <input type="text" name="title" value="<?= $note['title'] ?>" class="field-long"/>
                 </li>
                 <li>
-                    <label>Opis</label>
+                    <label>Description</label>
                     <textarea name="description" id="field" class="field-long field-textarea"><?= $note['description'] ?></textarea>
                 </li>
                 <li>
@@ -20,8 +20,8 @@
         </form>
     <?php else: ?>
         <div>
-            Brak danych do wyświetlenia
-            <a href="/"><button>Powrót do listy notatek</button></a>
+            No data to display
+            <a href="/"><button>Back to list of notes</button></a>
         </div>
     <?php endif; ?>
 </div>

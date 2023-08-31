@@ -99,7 +99,7 @@ form .field-textarea {
 
 form input[type=submit],
 form input[type=button] {
-  background: cadetblue;
+  background: cornflowerblue;
 
   border: none;
   color: #fff;
@@ -110,7 +110,7 @@ form input[type=button] {
 
 form input[type=submit]:hover,
 form input[type=button]:hover {
-  background: #4691A4;
+  background: #4d75bd;
   box-shadow: none;
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
@@ -143,12 +143,12 @@ form>div:first-child>label:first-child>input {
 }
 
 form>div:first-child>label:first-child>input:focus {
-  box-shadow: 0 0 0px 2px cadetblue;
+  box-shadow: 0 0 0px 2px cornflowerblue;
 }
 
 .header {
   text-align: center;
-  background-color: cadetblue;
+  background-color: cornflowerblue;
   margin-bottom: 20px;
   padding: 20px 0;
 }
@@ -171,7 +171,7 @@ form>div:first-child>label:first-child>input:focus {
 
 .menu ul a {
   display: block;
-  color: cadetblue;
+  color: cornflowerblue;
   font-size: 18px;
   text-transform: uppercase;
   padding: 16px 0;
@@ -189,7 +189,7 @@ form>div:first-child>label:first-child>input:focus {
 
 .footer {
   margin-top: 20px;
-  background-color: cadetblue;
+  background-color: cornflowerblue;
   padding-bottom: 30px;
 }
 
@@ -210,14 +210,14 @@ table {
 
 .tbl-header {
   margin-top: 20px;
-  background-color: cadetblue;
+  background-color: cornflowerblue;
   color: white;
 }
 
 .tbl-content {
   overflow-x: auto;
   margin-top: 0px;
-  border: 3px solid cadetblue;
+  border: 3px solid cornflowerblue;
   color: #222;
   background-color: white;
 }
@@ -309,14 +309,14 @@ tr>td:nth-child(3) {
 
 button {
   border: none;
-  background-color: cadetblue;
+  background-color: cornflowerblue;
   padding: 5px 10px;
   color: white;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #4691A4;
+  background-color: #4d75bd;
 }
 
 form.note-form li label {

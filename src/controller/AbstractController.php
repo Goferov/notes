@@ -45,6 +45,7 @@ abstract class AbstractController
             $this->$action();
         }
         catch (StorageException $e) {
+            dump($e->getMessage());
             $this->view->render('404',['msg'=>$e->getMessage()]);
         }
         catch (NotFoundException $e) {

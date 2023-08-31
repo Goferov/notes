@@ -1,7 +1,7 @@
 <html lang="pl">
 
 <head>
-  <title>Notatnik</title>
+  <title>NOTEBOOK</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
   <link href="/public/style.css" rel="stylesheet">
@@ -10,14 +10,14 @@
 <body class="body">
   <div class="wrapper">
     <div class="header">
-      <h1><i class="far fa-clipboard"></i>Moje notatki</h1>
+      <h1><i class="far fa-clipboard"></i>My notes</h1>
     </div>
 
     <div class="container">
       <div class="menu">
         <ul>
-          <li><a href="/">Strona główna</a></li>
-          <li><a href="/?action=create">Nowa notatka</a></li>
+          <li><a href="/">Notes list</a></li>
+          <li><a href="/?action=create">Create note</a></li>
         </ul>
       </div>
 
@@ -27,7 +27,7 @@
     </div>
 
     <div class="footer">
-      <p>Notatki - projekt w kursie PHP</p>
+      <p>Notes project in PHP</p>
     </div>
   </div>
 </body>
