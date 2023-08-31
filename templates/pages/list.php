@@ -5,10 +5,10 @@
             if (!empty($params['error'])) {
                 switch ($params['error']) {
                     case 'noteNotFound':
-                        echo 'Taka notatka nie istnieje!';
+                        echo 'This note does not exist';
                         break;
                     case 'missingNoteId':
-                        echo 'Nieprawidłowy ID notatki!';
+                        echo 'Incorrect note ID';
                         break;
                 }
             }
@@ -19,13 +19,13 @@
             if (!empty($params['msg'])) {
                 switch ($params['msg']) {
                     case 'created':
-                        echo 'Notatka zostało utworzona';
+                        echo 'The note has been created';
                         break;
                     case 'edited':
-                        echo 'Notatka zostało zaktualizowana';
+                        echo 'The note has been updated';
                         break;
                     case 'deleted':
-                        echo 'Notatka zostało usunięta';
+                        echo 'The note has been deleted';
                         break;
                 }
             }
@@ -48,20 +48,20 @@
         <div>
             <form class="settings-form" action="/" method="GET">
                 <div>
-                    <label>Wyszukaj: <input type="text" name="phrase" value="<?= $phrase ?>"/></label>
+                    <label>Search: <input type="text" name="phrase" value="<?= $phrase ?>"/></label>
                 </div>
                 <div>
-                    <div>Sortuj po:</div>
-                    <label>Tytule: <input name="sortby" type="radio" value="title" <?= $by === 'title' ? 'checked' : '' ?>/></label>
-                    <label>Dacie: <input name="sortby" type="radio" value="created" <?= $by === 'created' ? 'checked' : '' ?>/></label>
+                    <div>Sort by:</div>
+                    <label>Title: <input name="sortby" type="radio" value="title" <?= $by === 'title' ? 'checked' : '' ?>/></label>
+                    <label>Date: <input name="sortby" type="radio" value="created" <?= $by === 'created' ? 'checked' : '' ?>/></label>
                 </div>
                 <div>
-                    <div>Kierunek sortowania</div>
-                    <label>Rosnąco: <input name="sortorder" type="radio" value="asc" <?= $order === 'asc' ? 'checked' : '' ?>/></label>
-                    <label>Malejąco: <input name="sortorder" type="radio" value="desc" <?= $order === 'desc' ? 'checked' : '' ?>/></label>
+                    <div>Sorting direction</div>
+                    <label>Ascending: <input name="sortorder" type="radio" value="asc" <?= $order === 'asc' ? 'checked' : '' ?>/></label>
+                    <label>Descending: <input name="sortorder" type="radio" value="desc" <?= $order === 'desc' ? 'checked' : '' ?>/></label>
                 </div>
                 <div>
-                    <div>Liczba pozycji:</div>
+                    <div>Number of positions:</div>
                     <label>10 <input name="pagesize" type="radio" value="10" <?= $size === 10 ? 'checked' : '' ?>/> </label>
                     <label>15 <input name="pagesize" type="radio" value="15" <?= $size === 15 ? 'checked' : '' ?>/> </label>
                     <label>20 <input name="pagesize" type="radio" value="20" <?= $size === 20 ? 'checked' : '' ?>/> </label>
@@ -75,9 +75,9 @@
                 <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Tytuł</th>
-                    <th>Data</th>
-                    <th>Opcje</th>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>Options</th>
                 </tr>
                 </thead>
             </table>
