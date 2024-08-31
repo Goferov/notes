@@ -46,6 +46,22 @@ To run this project, follow these steps:
 
 Access the project in your web browser. You should now be able to create and manage notes.
 
+## Screenshots
+
+### Add Note
+![Add Note](img/add_note.png)
+
+### Delete Note
+![Delete Note](img/delete_note.png)
+
+### Edit Note
+![Edit Note](img/edit_note.png)
+
+### Notes List
+![Notes List](img/notes_list.png)
+
+### Show Note
+![Show Note](img/show_note.png)
 
 ## Acknowledgments
 
